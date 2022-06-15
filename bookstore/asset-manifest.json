@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5e41044a.css",
+    "main.js": "/static/js/main.80a575e3.js",
+    "static/media/Instagram_Logo.png": "/static/media/Instagram_Logo.80e598d8df0c0a94d580.png",
+    "static/media/Twitter_Logo.png": "/static/media/Twitter_Logo.b413b75b86f226240110.png",
+    "static/media/png-transparent-birdcage-drawing-bird-animals-pet-color.png": "/static/media/png-transparent-birdcage-drawing-bird-animals-pet-color.3c522711d35f29dff49c.png",
+    "static/media/Facebook_Logo.png": "/static/media/Facebook_Logo.6c83ee5c1bdbedbc947a.png",
+    "static/media/update.png": "/static/media/update.0446c4f786fdc16e42ee.png",
+    "static/media/remove.png": "/static/media/remove.3c662b752278fc52f408.png",
+    "index.html": "/index.html",
+    "main.5e41044a.css.map": "/static/css/main.5e41044a.css.map",
+    "main.80a575e3.js.map": "/static/js/main.80a575e3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e41044a.css",
+    "static/js/main.80a575e3.js"
+  ]
+}
