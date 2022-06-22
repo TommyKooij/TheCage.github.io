@@ -78,27 +78,76 @@ const Login = () => {
   };
   const { email, password } = loginData;
 
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const renderErrorMessage = (name) =>
+    name === errorMessages.name && (
+      <div className="error">{errorMessages.message}</div>
+    );
+
+  const handleSubmit = (event) => {
+    // Prevent page reload
+    event.preventDefault();
+
+    var { email, password } = document.forms[0];
+
+    // Find user login info
+    const userData = database.find((user) => user.username === email.value);
+
+    // Compare user info
+    if (userData) {
+      if (userData.password !== password.value) {
+        // Invalid password
+        setErrorMessages({ name: "password", message: errors.password });
+      } else {
+        setIsSubmitted(true);
+      }
+    } else {
+      // Username not found
+      setErrorMessages({ name: "email", message: errors.email });
+    }
+  };
+
+  const database = [
+    {
+      email: "tjwckooij@gmail.com",
+      password: "pass1",
+    },
+  ];
+
+  const errors = {
+    email: "Invalid Email",
+    password: "Invalid Password",
+  };
+
   return (
     <LoginContainer>
       <div className="siteLogin">
         <Header />
         <Container>
-          <TextContainer>Login</TextContainer>
-          <FormBlock
-            type="email"
-            name="email"
-            placeholder="Email..."
-            value={email}
-            onChange={handleFormChange}
-          ></FormBlock>
-          <FormBlock
-            type="password"
-            name="password"
-            placeholder="Password..."
-            value={password}
-            onChange={handleFormChange}
-          ></FormBlock>
-          <LoginBtn>Log In</LoginBtn>
+          <form onSubmit={handleSubmit}>
+            <TextContainer>Login</TextContainer>
+            <FormBlock
+              type="email"
+              name="email"
+              placeholder="Email..."
+              value={email}
+              onChange={handleFormChange}
+              onError={renderErrorMessage("email")}
+              required
+            ></FormBlock>
+            <FormBlock
+              type="password"
+              name="password"
+              placeholder="Password..."
+              value={password}
+              onChange={handleFormChange}
+              onError={renderErrorMessage("password")}
+              required
+            ></FormBlock>
+            <LoginBtn>Log In</LoginBtn>
+          </form>
         </Container>
         <Footer />
       </div>

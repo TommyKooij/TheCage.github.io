@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Button, Alert } from "react";
 import styled from "styled-components";
-import { getFirestore, getDocs, collection, doc } from "firebase/firestore";
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import { Link } from "react-router-dom";
@@ -48,6 +55,7 @@ const ContainerItemUpdateBtn = styled.button`
   width: 20px;
   height: 20px;
   z-index: 10;
+  position: absolute;
   background-color: #67f17e;
   border: 2px solid #20c758;
   &:hover {
@@ -94,43 +102,62 @@ const Home = () => {
     getReason();
   }, []);
 
+  const deleteBook = async (id, e) => {
+    e.stopPropagation();
+
+    const postDoc = doc(db, "Reason", id);
+    await deleteDoc(postDoc);
+  };
+
   return (
     <Site>
       <Header />
       <TextContainer>New</TextContainer>
       <Container>
-        <ContainerItem>
-          <Link to="/ShowBook" style={{ textDecoration: "none" }}>
-            <ContainerItemPct>
-              <ContainerItemDeleteBtn>
-                <div className="delete_item">
-                  <img
-                    src={deleteItem}
-                    alt="delete"
-                    width="16px"
-                    height="16px"
-                  ></img>
-                </div>
-              </ContainerItemDeleteBtn>
-              <ContainerItemUpdateBtn>
-                <div className="update_item">
-                  <img
-                    src={updateItem}
-                    alt="update"
-                    width="16px"
-                    height="16px"
-                  ></img>
-                </div>
-              </ContainerItemUpdateBtn>
-            </ContainerItemPct>
-            <ContainerItemTxt>
-              {reasonList &&
-                reasonList.map((book) => {
-                  return <div key={book.id}>{book.BookTitle}</div>;
-                })}
-            </ContainerItemTxt>
-          </Link>
-        </ContainerItem>
+        {reasonList &&
+          reasonList.map((book) => {
+            return (
+              <ContainerItem key={book.id}>
+                <Link
+                  to={`/ShowBook/${book.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <ContainerItemPct>
+                    <ContainerItemDeleteBtn>
+                      <div
+                        className="delete_item"
+                        key={book.id}
+                        onClick={(e) => deleteBook(book.id, e)}
+                      >
+                        <img
+                          src={deleteItem}
+                          alt="delete"
+                          width="16px"
+                          height="16px"
+                        ></img>
+                      </div>
+                    </ContainerItemDeleteBtn>
+                    <ContainerItemUpdateBtn>
+                      <Link
+                        to={`/EditBook/${book.id}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div className="update_item">
+                          <img
+                            src={updateItem}
+                            alt="update"
+                            width="16px"
+                            height="16px"
+                          ></img>
+                        </div>
+                      </Link>
+                    </ContainerItemUpdateBtn>
+                  </ContainerItemPct>
+                  <ContainerItemTxt>{book.BookTitle}</ContainerItemTxt>
+                </Link>
+              </ContainerItem>
+            );
+          })}
       </Container>
       <Footer />
     </Site>
@@ -140,7 +167,8 @@ const Home = () => {
 export default Home;
 
 // Implementables:
-//   - For-each loop to loop through series
 //   - Update and Delete
 //   - Login
 //   - Cover in DB
+//   - Show book
+//   - About me page

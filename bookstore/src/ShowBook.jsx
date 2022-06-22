@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getFirestore, getDocs, collection, doc } from "firebase/firestore";
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  doc,
+  query,
+  where,
+} from "firebase/firestore";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import { db } from "./firebaseconfig";
+import { useParams } from "react-router-dom";
+import twitter from "./img/Twitter_Logo.png";
 
 const Site = styled.div`
   width: auto;
@@ -68,7 +77,13 @@ const TextDetails = styled.div`
 
 const ShowBook = () => {
   const [reasonList, setReasonList] = useState([]);
-  const reasonCollection = collection(db, "Reason");
+  // const reasonCollection = collection(db, "Reason");
+  const { bookid } = useParams();
+  console.log(bookid);
+  const reasonCollection = query(
+    collection(db, "Reason"),
+    where("BookTitle", "==", bookid)
+  );
 
   useEffect(() => {
     const getReason = async () => {
@@ -93,7 +108,7 @@ const ShowBook = () => {
           })}
       </TextContainer>
       <Container>
-        <Cover></Cover>
+        <Cover img src={twitter} alt="twitter"></Cover>
         <BookDetails>
           {/* AUTHOR */}
           <HeaderTextDetails>
@@ -127,7 +142,7 @@ const ShowBook = () => {
             <TextDetails>
               {reasonList &&
                 reasonList.map((book) => {
-                  return <div key={book.id}>{book.BookPageNumber} pages</div>;
+                  return <div key={book.id}>{book.BookPages}</div>;
                 })}
             </TextDetails>
           </HeaderTextDetails>

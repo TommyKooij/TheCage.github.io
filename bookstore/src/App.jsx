@@ -6,7 +6,9 @@ import Sketches from "./Sketches";
 import AddBook from "./AddBook";
 import Login from "./Login";
 import ShowBook from "./ShowBook";
-import Series from "./ShowSeries";
+import ShowReason from "./ShowReason";
+import ShowHabuchi from "./ShowHabuchi";
+import EditBook from "./EditBook";
 
 const App = () => {
   return (
@@ -17,8 +19,10 @@ const App = () => {
         <Route path="/Sketches" element={<Sketches />} />
         <Route path="/AddBook" element={<AddBook />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/ShowBook" element={<ShowBook />} />
-        <Route path="/ShowSeries" element={<Series />} />
+        <Route path="/ShowBook/:bookid" element={<ShowBook />} />
+        <Route path="/ShowReason" element={<ShowReason />} />
+        <Route path="/ShowHabuchi" element={<ShowHabuchi />} />
+        <Route path="/EditBook/:bookid" element={<EditBook />} />
       </Routes>
     </div>
   );

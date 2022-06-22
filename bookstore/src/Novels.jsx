@@ -69,16 +69,18 @@ const Novels = () => {
       <Header />
       <TextContainer>Novels</TextContainer>
       <Container>
-        <Link to="/ShowSeries" style={{ textDecoration: "none" }}>
+        <Link to="/ShowReason" style={{ textDecoration: "none" }}>
           <ContainerItem>
             <ContainerItemPct></ContainerItemPct>
             <ContainerItemTxt>Reason</ContainerItemTxt>
           </ContainerItem>
         </Link>
-        <ContainerItem>
-          <ContainerItemPct></ContainerItemPct>
-          <ContainerItemTxt>Habuchi: Crimson Sheen</ContainerItemTxt>
-        </ContainerItem>
+        <Link to="/ShowHabuchi" style={{ textDecoration: "none" }}>
+          <ContainerItem>
+            <ContainerItemPct></ContainerItemPct>
+            <ContainerItemTxt>Habuchi: Crimson Sheen</ContainerItemTxt>
+          </ContainerItem>
+        </Link>
       </Container>
       <Footer />
     </Site>

@@ -78,7 +78,7 @@ const ContainerItemTxt = styled.div`
   font-weight: bold;
 `;
 
-const Series = () => {
+const ShowReason = () => {
   const [reasonList, setReasonList] = useState([]);
   const reasonCollection = collection(db, "Reason");
 
@@ -98,44 +98,53 @@ const Series = () => {
   return (
     <Site>
       <Header />
-      <TextContainer>Reason</TextContainer>
+      <TextContainer>
+        Reason
+        {/* {reasonList &&
+          reasonList.map((book) => {
+            return <div key={book.id}>{book.BookTitle}</div>;
+          })} */}
+      </TextContainer>
       <Container>
-        <Link to="/ShowBook" style={{ textDecoration: "none" }}>
-          <ContainerItem>
-            <ContainerItemPct>
-              <ContainerItemDeleteBtn>
-                <div className="delete_item">
-                  <img
-                    src={deleteItem}
-                    alt="delete"
-                    width="16px"
-                    height="16px"
-                  ></img>
-                </div>
-              </ContainerItemDeleteBtn>
-              <ContainerItemUpdateBtn>
-                <div className="update_item">
-                  <img
-                    src={updateItem}
-                    alt="update"
-                    width="16px"
-                    height="16px"
-                  ></img>
-                </div>
-              </ContainerItemUpdateBtn>
-            </ContainerItemPct>
-            <ContainerItemTxt>
-              {reasonList &&
-                reasonList.map((book) => {
-                  return <div key={book.id}>{book.BookTitle}</div>;
-                })}
-            </ContainerItemTxt>
-          </ContainerItem>
-        </Link>
+        {reasonList &&
+          reasonList.map((book) => {
+            return (
+              <ContainerItem key={book.id}>
+                <Link
+                  to={`/ShowBook/${book.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <ContainerItemPct>
+                    <ContainerItemDeleteBtn>
+                      <div className="delete_item">
+                        <img
+                          src={deleteItem}
+                          alt="delete"
+                          width="16px"
+                          height="16px"
+                        ></img>
+                      </div>
+                    </ContainerItemDeleteBtn>
+                    <ContainerItemUpdateBtn>
+                      <div className="update_item">
+                        <img
+                          src={updateItem}
+                          alt="update"
+                          width="16px"
+                          height="16px"
+                        ></img>
+                      </div>
+                    </ContainerItemUpdateBtn>
+                  </ContainerItemPct>
+                  <ContainerItemTxt>{book.BookTitle}</ContainerItemTxt>
+                </Link>
+              </ContainerItem>
+            );
+          })}
       </Container>
       <Footer />
     </Site>
   );
 };
 
-export default Series;
+export default ShowReason;

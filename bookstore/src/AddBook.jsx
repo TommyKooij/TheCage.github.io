@@ -177,6 +177,7 @@ const AddBook = () => {
               placeholder=""
               value={title}
               onChange={handleFormChange}
+              required
             />
           </ContainerItem>
           <ContainerItem>
@@ -187,6 +188,7 @@ const AddBook = () => {
               placeholder=""
               value={novels}
               onChange={handleFormChange}
+              required
             />
           </ContainerItem>
           <ContainerItem>
@@ -197,6 +199,7 @@ const AddBook = () => {
               placeholder=""
               value={author}
               onChange={handleFormChange}
+              required
             />
           </ContainerItem>
           <ContainerItem>
@@ -207,6 +210,7 @@ const AddBook = () => {
               placeholder=""
               value={price}
               onChange={handleFormChange}
+              required
             />
           </ContainerItem>
           <ContainerItem>
@@ -217,6 +221,7 @@ const AddBook = () => {
               placeholder=""
               value={genres}
               onChange={handleFormChange}
+              required
             />
           </ContainerItem>
           <ContainerItem>
@@ -227,6 +232,7 @@ const AddBook = () => {
               placeholder=""
               value={pages}
               onChange={handleFormChange}
+              required
             />
           </ContainerItem>
           <ContainerItem>
@@ -239,6 +245,7 @@ const AddBook = () => {
                 placeholder=""
                 value={synopsis}
                 onChange={handleFormChange}
+                required
               ></textarea>
             </TextAreaBlock>
           </ContainerItem>
@@ -246,12 +253,12 @@ const AddBook = () => {
           <TextContainerItem>Cover:</TextContainerItem>
           <UploadCoverBtn type="file" />
         </ContainerItem>*/}
-          <ContainerItem>
+          {/* <ContainerItem>
             <TextContainerItem>Book PDF:</TextContainerItem>
             <UploadCoverBtn type="file" />
-          </ContainerItem>
+          </ContainerItem> */}
           <ContainerItem>
-            <TextContainerItem>Book PNG:</TextContainerItem>
+            <TextContainerItem>Cover:</TextContainerItem>
             <UploadCoverBtn type="file" />
           </ContainerItem>
           <UploadBtn type="submit" name="upload">
